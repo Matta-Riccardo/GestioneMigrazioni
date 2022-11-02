@@ -62,7 +62,18 @@ public class FXMLController {
 
 	@FXML
 	void doSimula(ActionEvent event) {
-
+		Country c = boxNazione.getValue();
+		int T = model.simula(c);
+		List<CountryAndNumber> stanziali = model.getPersoneStanziali();
+		
+		
+		txtResult.setText(T+"\n");
+		int count = 0;
+		for(CountryAndNumber cc : stanziali) {
+			txtResult.appendText(cc.getCountry().getStateName() + " = " + cc.getNumber() + "\n");
+			count += cc.getNumber();
+		}
+		txtResult.appendText("Migranti totali= "+count+"\n");
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
